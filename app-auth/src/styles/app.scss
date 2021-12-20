@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
+@import "var";
+@import "components/header";
+@import "components/userWrapper";
+@import "components/login";
+
+html,
+body {
+  margin: 0 0 0 0;
+  padding: 0;
+  font-family: $font-family;
+  background-color: $c-secondary;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  color: inherit;
+  font: inherit;
+  color: $c-third;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style-type: none;
+}
+
+span {
+  color: inherit;
+}
+
+main {
+  width: 100%;
+  min-height: 77vh;
+}
+
+footer {
+  clear: both;
+  position: relative;
+  bottom: 0;
+  height: 1.8rem;
+  width: 100%;
+  background-color: $c-primary;
+  justify-content: center;
+}
