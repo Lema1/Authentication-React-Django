@@ -5,8 +5,16 @@
   top: 0;
   cursor: pointer;
   margin-right: $mb-1;
-  margin-top: $mb-2;
+  margin-top: $mb-1;
+  line-height: $mb-1;
   z-index: 110;
+  color: $c-secondary;
+  &__user-icon {
+    display: inline-block;
+    width: $mb-4;
+    height: $mb-4;
+    padding: 0.3rem;
+  }
   &__menu {
     width: 65%;
     &-container {

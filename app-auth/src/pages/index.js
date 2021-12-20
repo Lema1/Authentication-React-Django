@@ -20,7 +20,7 @@ const Home = (props) => {
         <span>
           Hola{" "}
           {user !== undefined &&
-            (user[1] === "2" ? "invitado" : user[0]["username"])}
+            (user[1] === "2" ? "Invitado" : user[0]["username"])}
         </span>
       </div>
     </Fragment>

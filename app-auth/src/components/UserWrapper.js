@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import Login from "./Login";
 import { logout, userData } from "../utils/authentication";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserWrapper = (props) => {
   const [wrapper, setWrapper] = useState(false);
@@ -19,18 +20,16 @@ const UserWrapper = (props) => {
   return (
     <Fragment>
       <div className="user-wrapper" onClick={() => setWrapper(!wrapper)}>
-        <Image
-          className="user-wrapper__image"
-          src="/assets/img/user.png"
-          alt=""
-          width={25}
-          height={25}
-          priority
-        />
+        <div className="user-wrapper__user-icon">
+          <FontAwesomeIcon
+            icon={[`fa`, `user`]}
+            className="user-wrapper__icon"
+          />
+        </div>
         {user && user[1] !== "2" ? (
-          <span>{user[0]["username"]}</span>
+          <span className="user-wrapper__username">{user[0]["username"]}</span>
         ) : (
-          <span>Invitado</span>
+          <span className="user-wrapper__username">Invitado</span>
         )}
       </div>
 

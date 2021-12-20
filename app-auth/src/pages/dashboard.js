@@ -9,7 +9,7 @@ const Dashboard = (props) => {
     setUser(props.user);
   }, [props.user]);
   return (
-    <div>
+    <div className="container">
       <p>
         Hola{" "}
         {user !== undefined &&
