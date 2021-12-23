@@ -1,33 +1,46 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import getAxios from "../utils/axios";
+import axios from "axios";
 import { login } from "../utils/authentication";
+import Link from "next/link";
+import { nSuccess, nError } from "../utils/notifications";
 
 const Login = (props) => {
   const { setWrapper } = props;
 
   const validate = Yup.object({
     email: Yup.string()
-      .email("Email invalido")
-      .min(10, "Minimo 10 carácteres")
-      .max(254, "No puede superar los 254 carácteres")
-      .required("Requerido"),
+      .email("Email invalido.")
+      .min(10, "Minimo 10 carácteres.")
+      .max(254, "No puede superar los 254 carácteres.")
+      .required("Requerido."),
     password: Yup.string()
-      .required("No password provided.")
-      .min(6, "Password is too short - should be 8 chars minimum."),
+      .required("La contraseña es requerida.")
+      .min(6, "Contraseña muy corta - Minimo 6 caracteres."),
   });
 
   const handleOnSubmit = async (values, setSubmitting) => {
-    const axios = getAxios();
     await axios
-      .post("auth/login/", values)
+      .post("http://127.0.0.1:8000/auth/login/", values)
       .then((response) => {
+        console.log(response);
         if (response.status == 200) {
           login(response.data);
+          nSuccess("Sesion Iniciada");
           setWrapper(false);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.data.detail === "Account not verified") {
+          nError("Cuenta no verificada, revisa tu bandeja de mensajes");
+        }
+        if (err.response.data.detail === "Account not activated") {
+          nError("Cuenta no verificada, revisa tu bandeja de mensajes");
+        }
+        if (err.response.data.detail === "Invalid credentials") {
+          nError("Usuario/Contraseña incorecctos");
+        }
+      });
     setSubmitting(false);
   };
   return (
@@ -80,6 +93,9 @@ const Login = (props) => {
           </Form>
         )}
       </Formik>
+      <Link href="/register">
+        <a onClick={() => setWrapper(false)}>Registrarse</a>
+      </Link>
     </div>
   );
 };

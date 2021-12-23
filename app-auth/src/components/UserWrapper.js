@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Image from "next/image";
 import Login from "./Login";
-import { logout, userData } from "../utils/authentication";
+import { logout } from "../utils/authentication";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { nSuccess } from "../utils/notifications";
 
 const UserWrapper = (props) => {
   const [wrapper, setWrapper] = useState(false);
@@ -10,6 +10,7 @@ const UserWrapper = (props) => {
 
   const handleLogout = () => {
     logout();
+    nSuccess("Sesion Cerrada");
     setWrapper(false);
   };
 

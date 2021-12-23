@@ -1,0 +1,43 @@
+.register {
+  &__container {
+    padding: $mb-1;
+  }
+  &__input {
+    &-data {
+      &:last-of-type {
+        margin-bottom: $mb-2;
+      }
+      input {
+        width: 100%;
+        border-radius: $mb-1;
+        outline: none;
+        border: 2px solid $c-grey;
+        padding: 3px 6px;
+        font-size: 0.9em;
+        &:hover {
+          border-color: $c-primary-ligth;
+        }
+        &:focus {
+          border-color: $c-primary;
+        }
+        &.invalid {
+          border-color: $c-red;
+        }
+      }
+    }
+    &-label {
+    }
+  }
+  &__error {
+    font-size: 0.7em;
+    color: $c-red;
+  }
+  &__submit {
+    width: 100%;
+    background-color: $c-primary;
+    padding: 0.3rem;
+    color: $c-secondary;
+    border: none;
+    border-radius: 0.3rem;
+  }
+}

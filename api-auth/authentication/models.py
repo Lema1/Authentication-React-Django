@@ -35,6 +35,8 @@ class User_Login(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    is_verified = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
 
     objects = CustomAccountManager()
     USERNAME_FIELD = 'email'
