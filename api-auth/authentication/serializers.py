@@ -85,12 +85,12 @@ class PasswordResetEmailSerializer(serializers.Serializer):
         if User_Login.objects.filter(email = email).exists():
             user = User_Login.objects.get(email = email)
             uidb64 = urlsafe_base64_encode(smart_bytes(user.id))
+
             token = PasswordResetTokenGenerator().make_token(user)
 
-            relativeLink = reverse('password-reset-confirm', kwargs={'uidb64': uidb64, 'token': token})
-            absurl = 'http://127.0.0.1:8000/'+relativeLink
-            email_body = 'Hola ' + user.username+ '. Use the link below to reset your password \n' + absurl
-            data = {'email_body': email_body,'to_email': user.email, 'email_subject': 'Reset your Password'}
+            absurl = 'http://localhost:3000/accounts/set-new-password/?token='+str(token) + '&uidb64=' +str(uidb64)
+            email_body = 'Hola ' + user.username+ '.\nUse el siguiente enlace para restablecer tu contraseña. \n' + absurl
+            data = {'email_body': email_body,'to_email': user.email, 'email_subject': 'Restablecer la contraseña'}
             Util.send_email(data)
 
         return super().validate(attrs)

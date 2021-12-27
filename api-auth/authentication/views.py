@@ -23,7 +23,7 @@ class RegisterView(generics.GenericAPIView):
 
         token = RefreshToken.for_user(user).access_token
 
-        absurl = "http://localhost:3000/activate-account/?token="+str(token)
+        absurl = "http://localhost:3000/accounts/activate-account/?token="+str(token)
         email_body = 'Hola' +user.username+ ' \n Usa el siguiente enlace para activar tu cuenta \n' + absurl
         data = {'email_body': email_body,'to_email': user.email, 'email_subject': 'Verificacion de Email'}
         Util.send_email(data)
@@ -55,7 +55,7 @@ class VerifyEmail(views.APIView):
             else:
                 # IF TOKEN IS EXPIRED SEND A NEW EMAIL WITH A NEW TOKEN
                 token = RefreshToken.for_user(userExpired).access_token
-                absurl = "http://localhost:3000/activate-account/?token="+str(token)
+                absurl = "http://localhost:3000/accounts/activate-account/?token="+str(token)
                 email_body = 'Hola' +userExpired.username+ ' \n Usa el siguiente enlace para activar tu cuenta \n' + absurl
                 data = {'email_body': email_body,'to_email': userExpired.email, 'email_subject': 'Nueva Verificacion de Email'}
                 Util.send_email(data)

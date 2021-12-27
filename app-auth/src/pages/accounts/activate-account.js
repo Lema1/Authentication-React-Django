@@ -21,6 +21,7 @@ const ActivateAccount = (props) => {
 
 ActivateAccount.getInitialProps = async (ctx) => {
   let response;
+
   await axios
     .get(`http://127.0.0.1:8000/auth/email-verify/?token=${ctx.query.token}`)
     .then((res) => {
@@ -36,6 +37,7 @@ ActivateAccount.getInitialProps = async (ctx) => {
         response = 2;
       }
     });
+
   return { response };
 };
 
