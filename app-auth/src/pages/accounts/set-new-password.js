@@ -6,11 +6,18 @@ const SetNewPassword = ({ props }) => {
   const { status, token, uidb64 } = props;
 
   return (
-    <div className="">
-      {status === 200 && <NewPassword token={token} uidb64={uidb64} />}
-      {status === 401 && (
-        <p>Error: El enlace para cambiar contraseña es invalido</p>
-      )}
+    <div className="accounts__password">
+      <span className="accounts__password-title">
+        Establecer nueva contraseña
+      </span>
+      <div className="accounts__password-container">
+        {status === 200 && <NewPassword token={token} uidb64={uidb64} />}
+        {status === 401 && (
+          <p className="accounts__password-mesage">
+            El enlace para cambiar contraseña es invalido
+          </p>
+        )}
+      </div>
     </div>
   );
 };

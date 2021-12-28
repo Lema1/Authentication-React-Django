@@ -39,4 +39,10 @@
     border: none;
     border-radius: 0.3rem;
   }
+
+  &__register {
+    display: block;
+    margin-top: $mb-1;
+    cursor: pointer;
+  }
 }

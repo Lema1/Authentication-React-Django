@@ -1,0 +1,101 @@
+.accounts {
+  &__activate {
+    text-align: center;
+    margin-top: $mb-4;
+  }
+
+  &__password {
+    &-title {
+      margin-top: $mb-2;
+      display: block;
+      text-align: center;
+    }
+    &-container {
+      padding: $mb-1;
+    }
+    &-input {
+      &-data {
+        width: 100%;
+        height: $mb-5;
+        position: relative;
+        border: 1px solid $c-grey;
+        border-radius: $mb-1;
+        &:hover {
+          border-color: $c-primary-ligth;
+        }
+        &:focus {
+          border-color: $c-primary;
+        }
+        &.invalid {
+          border-color: $c-red;
+        }
+      }
+      &-email {
+        width: 80%;
+        height: 100%;
+        padding: 3px 6px;
+        border: none;
+        border-radius: $mb-1;
+        &::placeholder {
+          font-size: 0.85em;
+        }
+      }
+    }
+    &-submit {
+      width: 20%;
+      height: 100%;
+      padding: 3px 6px;
+      position: absolute;
+      border: none;
+      border-radius: 0 $mb-1 $mb-1 0;
+      cursor: pointer;
+    }
+    &-error {
+      font-size: 0.82em;
+      color: $c-red;
+    }
+
+    &-mesage {
+      padding: 0.5rem;
+    }
+  }
+
+  &__new-password {
+    &__input {
+      &-data {
+        &:last-of-type {
+          margin-bottom: $mb-2;
+        }
+        input {
+          width: 100%;
+          border-radius: $mb-1;
+          outline: none;
+          border: 2px solid $c-grey;
+          padding: 3px 6px;
+          font-size: 0.9em;
+          &:hover {
+            border-color: $c-primary-ligth;
+          }
+          &:focus {
+            border-color: $c-primary;
+          }
+          &.invalid {
+            border-color: $c-red;
+          }
+        }
+      }
+    }
+    &__error {
+      font-size: 0.7em;
+      color: $c-red;
+    }
+    &__submit {
+      width: 100%;
+      background-color: $c-primary;
+      padding: 0.3rem;
+      color: $c-secondary;
+      border: none;
+      border-radius: 0.3rem;
+    }
+  }
+}

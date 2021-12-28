@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Login from "./Login";
 import { logout } from "../utils/authentication";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { nSuccess } from "../utils/notifications";
+import Link from "next/link";
 
 const UserWrapper = (props) => {
   const [wrapper, setWrapper] = useState(false);
@@ -10,7 +10,6 @@ const UserWrapper = (props) => {
 
   const handleLogout = () => {
     logout();
-    nSuccess("Sesion Cerrada");
     setWrapper(false);
   };
 
@@ -43,9 +42,17 @@ const UserWrapper = (props) => {
           {user && user[1] === "2" ? (
             <Login setWrapper={setWrapper} />
           ) : (
-            <span className="user-wrapper__menu-logout" onClick={handleLogout}>
-              Logout
-            </span>
+            <Fragment>
+              <Link href={"/accounts/user-detail"}>
+                <a className="user-wrapper__menu-profile">Perfil</a>
+              </Link>
+              <span
+                className="user-wrapper__menu-logout"
+                onClick={handleLogout}
+              >
+                Logout
+              </span>
+            </Fragment>
           )}
         </div>
       </div>

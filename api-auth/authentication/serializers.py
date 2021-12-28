@@ -72,7 +72,7 @@ class LoginDetailSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255, min_length=5)
     class Meta:
         model = User_Login
-        fields = ['id', 'email']
+        fields = ['id', 'email', 'username', 'is_staff', 'is_active']
 
 class PasswordResetEmailSerializer(serializers.Serializer):
     email = serializers.EmailField(min_length = 5)

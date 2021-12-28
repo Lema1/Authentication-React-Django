@@ -4,11 +4,11 @@ import axios from "axios";
 const ActivateAccount = (props) => {
   const { response } = props;
   return (
-    <div>
+    <div className="accounts__activate">
       {response === 0 ? (
-        <Fragment>Su cuenta ha sido activada correctamente.</Fragment>
+        <p>Su cuenta ha sido activada correctamente.</p>
       ) : response === 1 ? (
-        <Fragment>Cuenta ya activada</Fragment>
+        <p>Su cuenta ya ha sido activada</p>
       ) : (
         <Fragment>
           <p>Su codigo de activacion ha caducado.</p>

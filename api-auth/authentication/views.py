@@ -5,10 +5,16 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 from django.utils.http import urlsafe_base64_decode
-from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer, PasswordResetEmailSerializer, SetNewPasswordSerializer
+from .serializers import RegisterSerializer, EmailVerificationSerializer, LoginSerializer, PasswordResetEmailSerializer, SetNewPasswordSerializer, LoginDetailSerializer
 from .models import User_Login
 from .utils import Util
 import jwt
+from rest_framework import permissions
+
+class IsOwnerPermission(permissions.BasePermission):
+    def has_permission(self, request, view):
+        user = User_Login.objects.get(id=view.kwargs['id'])
+        return str(request.user) == str(user.email)
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -114,3 +120,9 @@ class BlacklistTokenUpdateView(generics.GenericAPIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class User_AddressDetail_User(generics.RetrieveAPIView):
+    permission_classes = (permissions.IsAuthenticated,IsOwnerPermission)
+    serializer_class = LoginDetailSerializer
+    queryset = User_Login.objects.all()
+    lookup_field = 'id'

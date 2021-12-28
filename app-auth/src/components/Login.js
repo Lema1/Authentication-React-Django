@@ -94,7 +94,9 @@ const Login = (props) => {
         )}
       </Formik>
       <Link href="/register">
-        <a onClick={() => setWrapper(false)}>Registrarse</a>
+        <a className="login__register" onClick={() => setWrapper(false)}>
+          Registrarse
+        </a>
       </Link>
     </div>
   );

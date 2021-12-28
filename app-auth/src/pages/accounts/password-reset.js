@@ -24,8 +24,10 @@ const PasswordReset = () => {
     setSubmitting(false);
   };
   return (
-    <div className="register">
-      <span>Solicitar cambio de Contraseña</span>
+    <div className="accounts__password">
+      <span className="accounts__password-title">
+        Solicitar cambio de Contraseña
+      </span>
       <Formik
         initialValues={{ email: "" }}
         validationSchema={validate}
@@ -35,27 +37,28 @@ const PasswordReset = () => {
       >
         {({ handleSubmit, isSubmitting }) => (
           <Form onSubmit={handleSubmit}>
-            <div className="register__container">
-              <div className="register__input-data">
-                <label className="register__input-label">E-Mail</label>
+            <div className="accounts__password-container">
+              <div className="accounts__password-input-data">
+                {/* <label className="accounts__password-input-label">E-Mail</label> */}
                 <Field
-                  className="register__input-email"
+                  className="accounts__password-input-email"
                   type="email"
                   name="email"
+                  placeholder="Ej: test@gmail.com"
                 />
-                <ErrorMessage
-                  component="div"
-                  name="email"
-                  className="register__error"
-                />
+                <button
+                  type="submit"
+                  className="accounts__password-submit"
+                  disabled={isSubmitting}
+                >
+                  Enviar
+                </button>
               </div>
-              <button
-                type="submit"
-                className="register__submit"
-                disabled={isSubmitting}
-              >
-                Enviar
-              </button>
+              <ErrorMessage
+                component="div"
+                name="email"
+                className="accounts__password-error"
+              />
             </div>
           </Form>
         )}

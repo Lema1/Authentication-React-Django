@@ -29,8 +29,7 @@ const NewPassword = (props) => {
     setSubmitting(false);
   };
   return (
-    <div className="register">
-      <span>Establecer nueva contraseña</span>
+    <div className="accounts__new-password">
       <Formik
         initialValues={{
           password: "",
@@ -45,11 +44,13 @@ const NewPassword = (props) => {
       >
         {({ handleSubmit, isSubmitting }) => (
           <Form onSubmit={handleSubmit}>
-            <div className="register__container">
-              <div className="register__input-data">
-                <label className="register__input-label">Contraseña</label>
+            <div className="accounts__new-password__container">
+              <div className="accounts__new-password__input-data">
+                <label className="accounts__new-password__input-label">
+                  Contraseña
+                </label>
                 <Field
-                  className="register__input-email"
+                  className="accounts__new-password__input-email"
                   type="password"
                   name="password"
                   autoComplete="off"
@@ -57,15 +58,15 @@ const NewPassword = (props) => {
                 <ErrorMessage
                   component="div"
                   name="password"
-                  className="register__error"
+                  className="accounts__new-password__error"
                 />
               </div>
-              <div className="register__input-data">
-                <label className="register__input-label">
+              <div className="accounts__new-password__input-data">
+                <label className="accounts__new-password__input-label">
                   Confirmar nueva Contraseña
                 </label>
                 <Field
-                  className="register__input-email"
+                  className="accounts__new-password__input-email"
                   type="password"
                   name="passwordConfirmation"
                   autoComplete="off"
@@ -73,12 +74,12 @@ const NewPassword = (props) => {
                 <ErrorMessage
                   component="div"
                   name="passwordConfirmation"
-                  className="register__error"
+                  className="accounts__new-password__error"
                 />
               </div>
               <button
                 type="submit"
-                className="register__submit"
+                className="accounts__new-password__submit"
                 disabled={isSubmitting}
               >
                 Cambiar Contraseña

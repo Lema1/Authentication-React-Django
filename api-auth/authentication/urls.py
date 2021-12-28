@@ -1,7 +1,7 @@
 from django.urls import path
 from django.urls.conf import include
 from rest_framework_simplejwt.views import TokenRefreshView
-from .views import RegisterView, LoginApiView, BlacklistTokenUpdateView, VerifyEmail, PasswordResetEmail, PasswordTokenCheck, SetNewPassword
+from .views import RegisterView, LoginApiView, BlacklistTokenUpdateView, VerifyEmail, PasswordResetEmail, PasswordTokenCheck, SetNewPassword, User_AddressDetail_User
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
@@ -13,6 +13,9 @@ urlpatterns = [
     
     #== TOKENS ==#
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('logout/blacklist/', BlacklistTokenUpdateView.as_view(), name='blacklist')
+    path('logout/blacklist/', BlacklistTokenUpdateView.as_view(), name='blacklist'),
+
+    # USER-DETAIL
+    path('user/<int:id>', User_AddressDetail_User.as_view(), name="user_address"),
 ]
 

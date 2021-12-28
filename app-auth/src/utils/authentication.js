@@ -1,6 +1,8 @@
 import { Role } from "./role";
 import { setCookie, removeCookie, getCookie } from "./cookie";
 import Router from "next/router";
+import getAxios from "../utils/axios";
+import { nSuccess, nError } from "../utils/notifications";
 
 export const auth = (ctx) => {
   const token = getCookie("token_refresh", ctx.req);
@@ -52,9 +54,23 @@ export const userData = (ctx) => {
   }
 };
 
-export const logout = () => {
-  removeCookie("token_access");
-  removeCookie("token_refresh");
-  removeCookie("userData");
+export const logout = async () => {
+  const token = getCookie("token_refresh");
+  const axios = getAxios();
+
+  await axios
+    .post("auth/logout/blacklist/", { refresh_token: token })
+    .then(() => {
+      nSuccess("Sesion cerrada.");
+      // REMOVE COOKIES
+      removeCookie("token_access");
+      removeCookie("token_refresh");
+      removeCookie("userData");
+    })
+    .catch((err) => {
+      console.log(err);
+      nError(err.response.status, err.response.statusText);
+    });
+
   Router.push("/");
 };
