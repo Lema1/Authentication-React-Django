@@ -44,7 +44,12 @@ const UserWrapper = (props) => {
           ) : (
             <Fragment>
               <Link href={"/accounts/user-detail"}>
-                <a className="user-wrapper__menu-profile">Perfil</a>
+                <a
+                  className="user-wrapper__menu-profile"
+                  onClick={() => setWrapper(!wrapper)}
+                >
+                  Perfil
+                </a>
               </Link>
               <span
                 className="user-wrapper__menu-logout"

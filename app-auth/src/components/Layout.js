@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Head from "next/head";
 import UserWrapper from "./UserWrapper";
 import { userData } from "../utils/authentication";
+import Link from "next/link";
 
 const Layout = ({ children }) => {
   return (
@@ -12,7 +13,9 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="header">
-        <span>Authentication</span>
+        <Link href="/">
+          <a>Authentication</a>
+        </Link>
       </header>
       <UserWrapper user={userData()} />
       <main className="main">{children}</main>
